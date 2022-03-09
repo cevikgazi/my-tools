@@ -1,0 +1,84 @@
+<style>
+  .gf_inline {
+    display: inline-block;
+    margin-right: 2%;
+    width: auto;
+    min-width: 1em;
+  }
+
+  .sp_modern {
+    border-radius: 30px !important;
+    border-color: rgb(116, 116, 116) !important;
+    background: 0 0;
+    border: 1px solid silver;
+    padding: 0.5em 0.5em;
+    font-size: 1em;
+    line-height: normal;
+    outline: 0;
+    margin: 0;
+    height: auto;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    display: inline-block;
+    box-sizing: border-box;
+  }
+</style>
+<h2>Resize your image</h2>
+<div class="gf_inline">
+  <p>old Height</p>
+  <input id="o_height" class="sp_modern" oninput="oldHeight()" />
+  <p>old Width</p>
+  <input id="o_width" class="sp_modern" oninput="oldWidth()" />
+</div>
+
+<div class="gf_inline">
+  <p>new Height</p>
+  <input id="n_height" class="sp_modern" oninput="newHeight()" />
+  <p>new Width</p>
+  <input id="n_width" class="sp_modern" oninput="newWidth()" />
+</div>
+
+<script>
+  function oldHeight()
+  {
+    var o_height = document.getElementById("o_height").value;
+    document.getElementById("n_height").value = o_height;
+  }
+
+  function oldWidth()
+  {
+    var o_width = document.getElementById("o_width").value;
+    document.getElementById("n_width").value = o_width;
+  }
+
+  function newHeight()
+  {
+    var o_height = document.getElementById("o_height").value;
+    var n_height = document.getElementById("n_height").value;
+    var o_width = document.getElementById("o_width").value;
+
+    document.getElementById("n_width").value = percentage(o_width, percentage_calc(n_height, o_height)
+    );
+  }
+
+  function newWidth()
+  {
+    var o_width = document.getElementById("o_width").value;
+    var n_width = document.getElementById("n_width").value;
+    var o_height = document.getElementById("o_height").value;
+
+    document.getElementById("n_height").value = percentage(o_height, percentage_calc(n_width, o_width)
+    );
+  }
+
+  function percentage_calc(new_num, old_num)
+  {
+    return (new_num / old_num) * 100;
+  }
+
+  function percentage(num, per)
+  {
+    return (num / 100) * per;
+  }
+</script>
